@@ -1146,7 +1146,7 @@ function scoreCar(car,tipo){
     // En vez de comparar solo precio, estimamos el costo operativo
     const patMes = Math.round((car.p/1.22) * (tipo==='ev'||tipo==='util-ev'||tipo==='phev'||tipo==='hev' ? 0.03 : 0.05) / 12);
     const mantMes = {'ev':14,'util-ev':14,'phev':18,'hev':22,'ice':33,'util-ice':43}[tipo]||33;
-    const energiaMes = tipo==='ev'||tipo==='util-ev' ? Math.round(km*30*0.16*kwhU) :
+    const energiaMes = tipo==='ev'||tipo==='util-ev' ? Math.round(km*30*0.16*0.058) : // $0.058/kWh ≈ $2.44 valle / TC 42
                        tipo==='hev' ? Math.round(km*30*(car.a||6)/100*2.22) :
                        tipo==='ice'||tipo==='util-ice' ? Math.round(km*30*(car.a||9)/100*2.22) : 0;
     const costoOpMes = patMes + mantMes + energiaMes;
